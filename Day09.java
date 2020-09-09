@@ -41,6 +41,7 @@ import java.util.Arrays;
 
 public class Day09 {
    class Solution {
+       
       public int compareVersion(String version1, String version2) {
           String[] ver1 = version1.split("[.]");
           int n1 = ver1.length;
@@ -60,7 +61,6 @@ public class Day09 {
           boolean isV2Finished = false;
           
           while (true) {
-              System.out.println("v1 = " + v1 + ", v2 = " + v2);
               if(v1 > v2) {
                   return 1;
               }
