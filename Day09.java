@@ -37,7 +37,61 @@
     Version strings are composed of numeric strings separated by dots . and this numeric strings may have leading zeroes.
     Version strings do not start or end with dots, and they will not be two consecutive dots.
  */
+import java.util.Arrays;
 
 public class Day09 {
-   
+   class Solution {
+      public int compareVersion(String version1, String version2) {
+          String[] ver1 = version1.split("[.]");
+          int n1 = ver1.length;
+          
+          String[] ver2 = version2.split("[.]");
+          int n2 = ver2.length;
+          
+          return revisionCompare(ver1, ver2, n1, n2);
+      }
+      
+      private int revisionCompare(String[] ver1, String[] ver2, int n1, int n2) {
+          int i=0;
+          int j=0;
+          int v1 = Integer.parseInt(ver1[i]);
+          int v2 = Integer.parseInt(ver2[j]);
+          boolean isV1Finished = false;
+          boolean isV2Finished = false;
+          
+          while (true) {
+              System.out.println("v1 = " + v1 + ", v2 = " + v2);
+              if(v1 > v2) {
+                  return 1;
+              }
+              else if(v1 < v2) {
+                  return -1;
+              }
+              else {
+                  if(i+1 < n1) {
+                      i++;
+                      v1 = Integer.parseInt(ver1[i]);
+                  }
+                  else {
+                      isV1Finished = true;
+                      v1 = 0;    
+                  }
+                  
+                  if(j+1 < n2) {
+                      j++;
+                      v2 = Integer.parseInt(ver2[j]);
+                  }
+                  else {
+                      isV2Finished = true;
+                      v2 = 0;
+                  }
+                  
+                  if(v1 == v2 && isV1Finished && isV2Finished) {
+                      return 0;
+                  }
+              }
+          }
+      }
+      
+  }
 }
